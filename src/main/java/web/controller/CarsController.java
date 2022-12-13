@@ -11,15 +11,11 @@ import java.util.List;
 
 @Controller
 public class CarsController {
-
-    public static List<Car> getCars() {
-        return CarsService.getCars();
-    }
-
     @GetMapping(value = "/cars")
     public String printCars(ModelMap model, @RequestParam(value = "count", defaultValue = "5") int count) {
-        List<Car> result = CarsService.getCarsByCount(count);
-        model.addAttribute("cars", result);
+        CarsService carsService = new CarsService();
+        List<Car> cars = carsService.getCarsByCount(count);
+        model.addAttribute("cars", cars);
         return "cars";
     }
 }
