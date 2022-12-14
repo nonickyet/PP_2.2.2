@@ -25,12 +25,10 @@ public class CarsService {
         return carsBuff;
     }
 
-    public static String getCarsByCount(ModelMap model, int count) {
-        List<Car> result = new ArrayList<>();
-        for (int i = 0; i < count && i < 5; i++) {
-            result.add(web.controller.CarsController.getCars().get(i));
+    public static List<Car> getCarsByCount(int count) {
+        if(count <= 5){
+        return  cars.subList(0, count);
         }
-        model.addAttribute("cars", result);
-        return "cars";
+        return cars;
     }
 }
